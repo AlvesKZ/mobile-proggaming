@@ -1,0 +1,7 @@
+{
+  "name": "proggaming-mb",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
