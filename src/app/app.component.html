@@ -23,6 +23,11 @@
                 <ion-badge *ngIf="(xpTotal$ | async) as xp" slot="end" color="primary">+{{ xp }} XP</ion-badge>
               </ion-item>
 
+              <ion-item button routerLink="/academy" class="menu-item">
+                <ion-icon name="school-outline" slot="start"></ion-icon>
+                <ion-label>Academy</ion-label>
+              </ion-item>
+
               <ion-item button routerLink="/amigos" class="menu-item">
                 <ion-icon name="people-outline" slot="start"></ion-icon>
                 <ion-label>Amigos - Em breve</ion-label>

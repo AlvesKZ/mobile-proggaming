@@ -58,4 +58,12 @@ export const routes: Routes = [
     path: 'js-fase3',
     loadComponent: () => import('./pages/aprender/game-js/fase3/fase3.page').then( m => m.Fase3Page)
   },
+  {
+    path: 'academy',
+    loadComponent: () => import('./pages/academy/academy.page').then( m => m.AcademyPage)
+  },
+  {
+    path: 'chatbot',
+    loadComponent: () => import('./pages/academy/chatbot/chatbot.page').then( m => m.ChatbotPage)
+  },
 ];

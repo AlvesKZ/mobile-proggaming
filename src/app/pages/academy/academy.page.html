@@ -1,0 +1,146 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="header-left">
+        <h1>Proggaming Academy</h1>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/chatbot" fill="clear" size="small">
+        Chatbot
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="academy-root">
+    <main id="body">
+      <span class="title-main">Arquivos, tutoriais, repositórios e muito mais sobre programação básica.</span>
+
+      <div class="container">
+        <div class="tabs">
+          <button type="button" (click)="setSection('filehtml')">
+            <span class="tab-icon html">HTML</span>
+            <span>File HTML</span>
+          </button>
+          <button type="button" (click)="setSection('filecss')">
+            <span class="tab-icon css">CSS</span>
+            <span>File CSS</span>
+          </button>
+          <button type="button" (click)="setSection('filejs')">
+            <span class="tab-icon js">JS</span>
+            <span>File JS</span>
+          </button>
+          <button type="button" (click)="setSection('moretech')">
+            <span class="tab-icon tech">&lt;/&gt;</span>
+            <span>More Tech</span>
+          </button>
+          <button type="button" (click)="setSection('nada')">
+            <span>Fechar</span>
+          </button>
+        </div>
+
+        <div class="tabs-sections">
+          <div *ngIf="loading" class="text-error">Carregando materiais...</div>
+          <div *ngIf="!loading && errorMessage" class="text-error">{{ errorMessage }}</div>
+
+          <section id="nada" class="page" [class.active]="activeSection === 'nada'"></section>
+
+          <section id="filehtml" class="page" [class.active]="activeSection === 'filehtml'">
+            <div class="items-grid" *ngIf="itensHtml.length; else noHtml">
+              <article class="item-card" *ngFor="let item of itensHtml">
+                <img class="item-card__img" [src]="getImagemPath(item.imagem)" [alt]="item.titulo">
+                <div class="item-card__body">
+                  <h3 class="item-card__title">{{ item.titulo }}</h3>
+                  <p class="item-card__meta">Categoria: {{ item.category }}</p>
+                  <a class="item-card__link" [href]="getArquivoPath(item.link)" target="_blank" rel="noopener noreferrer">
+                    <span>Ver</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <ng-template #noHtml>
+              <p class="text-error">Nenhum material HTML encontrado.</p>
+            </ng-template>
+          </section>
+
+          <section id="filecss" class="page" [class.active]="activeSection === 'filecss'">
+            <div class="items-grid" *ngIf="itensCss.length; else noCss">
+              <article class="item-card" *ngFor="let item of itensCss">
+                <img class="item-card__img" [src]="getImagemPath(item.imagem)" [alt]="item.titulo">
+                <div class="item-card__body">
+                  <h3 class="item-card__title">{{ item.titulo }}</h3>
+                  <p class="item-card__meta">Categoria: {{ item.category }}</p>
+                  <a class="item-card__link" [href]="getArquivoPath(item.link)" target="_blank" rel="noopener noreferrer">
+                    <span>Ver</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <ng-template #noCss>
+              <p class="text-error">Nenhum material CSS encontrado.</p>
+            </ng-template>
+          </section>
+
+          <section id="filejs" class="page" [class.active]="activeSection === 'filejs'">
+            <div class="items-grid" *ngIf="itensJs.length; else noJs">
+              <article class="item-card" *ngFor="let item of itensJs">
+                <img class="item-card__img" [src]="getImagemPath(item.imagem)" [alt]="item.titulo">
+                <div class="item-card__body">
+                  <h3 class="item-card__title">{{ item.titulo }}</h3>
+                  <p class="item-card__meta">Categoria: {{ item.category }}</p>
+                  <a class="item-card__link" [href]="getArquivoPath(item.link)" target="_blank" rel="noopener noreferrer">
+                    <span>Ver</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <ng-template #noJs>
+              <p class="text-error">Nenhum material JS encontrado.</p>
+            </ng-template>
+          </section>
+
+          <section id="moretech" class="page" [class.active]="activeSection === 'moretech'">
+            <div class="items-grid" *ngIf="itensMoreTech.length; else noMore">
+              <article class="item-card" *ngFor="let item of itensMoreTech">
+                <img class="item-card__img" [src]="getImagemPath(item.imagem)" [alt]="item.titulo">
+                <div class="item-card__body">
+                  <h3 class="item-card__title">{{ item.titulo }}</h3>
+                  <p class="item-card__meta">Categoria: {{ item.category }}</p>
+                  <a class="item-card__link" [href]="getArquivoPath(item.link)" target="_blank" rel="noopener noreferrer">
+                    <span>Ver</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <ng-template #noMore>
+              <p class="text-error">Nenhum material encontrado em More Tech.</p>
+            </ng-template>
+          </section>
+        </div>
+      </div>
+
+      <div class="icon" (click)="abrirModal()">
+        <img src="assets/prota-dançando.gif" alt="Prota dançando" />
+      </div>
+    </main>
+
+    <div class="modal" *ngIf="modalAberto" (click)="fecharModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="close-button" type="button" (click)="fecharModal()">&times;</button>
+        <h2>Olá! Eu sou o Prota!</h2>
+        <p>
+          Bem-vindo à nossa Academia de Programação! Aqui, você encontrará uma variedade de cursos e
+          recursos para aprimorar suas habilidades em desenvolvimento web e muito mais. Explore nossas seções
+          de HTML, CSS, JavaScript e outras tecnologias. Vamos codar juntos!
+        </p>
+        <span>Já conhece nosso site oficial? Lá você consegue aprender, testar e ganhar XP:</span>
+        <a href="https://proggamingpage.web.app" target="_blank">proggamingpage.web.app</a>
+        <footer>
+          <span><strong>&copy; {{ getAnoAtual() }} Proggaming.</strong> All rights reserved.</span>
+        </footer>
+      </div>
+    </div>
+  </div>
+</ion-content>

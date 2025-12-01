@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Proggaming Chatbot</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="chatbot-root" [ngClass]="tema">
+
+    <button class="menu-toggler" type="button" (click)="abrirMenu()" aria-label="Abrir Menu Lateral">
+      ?
+    </button>
+
+    <nav class="side-menu" [class.open]="menuAberto">
+      <button class="close-btn" type="button" (click)="fecharMenu()" aria-label="Fechar Menu Lateral">&times;</button>
+
+      <h3 class="menu-title">Mensagens Válidas</h3>
+
+      <ul class="menu-list">
+        <li class="menu-item" *ngFor="let p of menuPerguntas">
+          <button type="button" (click)="selecionarPerguntaMenu(p)">{{ p }}</button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="menu-overlay" [class.show]="menuAberto" (click)="fecharMenu()"></div>
+
+    <div class="chat-container">
+      <div class="chat-box" id="chat-box">
+        <div *ngFor="let msg of mensagens" class="mensagem" [ngClass]="msg.tipo" [innerHTML]="msg.texto"></div>
+      </div>
+
+      <div class="chat-input">
+        <textarea
+          id="user-input"
+          [(ngModel)]="inputTexto"
+          (keyup.enter)="enviar()"
+          placeholder="Mande um Olá..."
+        ></textarea>
+        <button type="button" (click)="enviar()">&uarr;</button>
+      </div>
+
+      <div id="botoes-atalho">
+        <button
+          type="button"
+          *ngFor="let b of perguntasRapidas"
+          (click)="preencherInput(b.pergunta, true)"
+        >
+          {{ b.label }}
+        </button>
+        <button type="button" routerLink="/academy">
+          Voltar ao Academy &rarr;
+        </button>
+        <button type="button" class="btn-theme" (click)="trocarTema()">
+          &#128161;
+        </button>
+      </div>
+
+      <footer class="chat-footer">
+        <span><strong>&copy; {{ getAnoAtual() }} Proggaming.</strong> All rights reserved.</span>
+      </footer>
+    </div>
+  </div>
+</ion-content>
