@@ -35,6 +35,8 @@ export class Fase1Page implements OnInit, OnDestroy {
   private ultimoCodigoAceito = '';
   private precisaAlterarCodigo = false;
   botaoDesabilitado = false;
+  private extraVisivel = false;
+  private extraHtmlAtual = '';
 
   niveis: Nivel[] = [
     {
@@ -268,6 +270,7 @@ export class Fase1Page implements OnInit, OnDestroy {
     const descricaoNivel = document.getElementById('descricao-nivel');
     const textoTeoria = document.getElementById('texto-teoria');
     const extraTeoria = document.getElementById('extra-teoria');
+    const botaoExemplo = document.getElementById('btn-extra-exemplo') as HTMLButtonElement | null;
     const preview = document.getElementById('preview');
     const entradaCodigo = document.getElementById('entrada-codigo') as HTMLTextAreaElement | null;
     const barra = document.getElementById('barra-progresso') as HTMLDivElement | null;
@@ -275,10 +278,34 @@ export class Fase1Page implements OnInit, OnDestroy {
     if (tituloNivel) tituloNivel.textContent = nivel.titulo;
     if (descricaoNivel) descricaoNivel.textContent = nivel.descricao;
     if (textoTeoria) textoTeoria.textContent = nivel.teoria;
-    if (extraTeoria) extraTeoria.innerHTML = nivel.extra;
+    // prepara HTML de exemplo com quebra de linha após o rótulo "Exemplo" / "Ex."
+    let extra = nivel.extra || '';
+    extra = extra.replace('Exemplo: ', 'Exemplo:<br>');
+    extra = extra.replace('Ex.: ', 'Ex.:<br>');
+    this.extraHtmlAtual = extra;
+    this.extraVisivel = false;
+    if (extraTeoria) extraTeoria.innerHTML = '';
+    if (botaoExemplo) {
+      if (this.extraHtmlAtual) {
+        botaoExemplo.style.display = 'inline-flex';
+        botaoExemplo.innerText = 'Exibir exemplo';
+      } else {
+        botaoExemplo.style.display = 'none';
+      }
+    }
     if (entradaCodigo) entradaCodigo.value = '';
     if (preview) preview.innerHTML = 'A visualização aparecerá aqui.';
     if (barra) barra.style.width = `${(this.nivelAtual / this.niveis.length) * 100}%`;
+  }
+
+  toggleExemplo() {
+    const extraTeoria = document.getElementById('extra-teoria');
+    const botaoExemplo = document.getElementById('btn-extra-exemplo') as HTMLButtonElement | null;
+    if (!extraTeoria || !botaoExemplo || !this.extraHtmlAtual) return;
+
+    this.extraVisivel = !this.extraVisivel;
+    extraTeoria.innerHTML = this.extraVisivel ? this.extraHtmlAtual : '';
+    botaoExemplo.innerText = this.extraVisivel ? 'Ocultar exemplo' : 'Exibir exemplo';
   }
 
   private async adicionarXP(qtd: number) {

@@ -1,66 +1,62 @@
 <ion-app>
   <ion-split-pane contentId="conteudo-principal">
-    <ion-menu contentId="conteudo-principal" type="overlay" side="start">
 
-      <ion-content class="ion-padding" color="light">
-        <div class="side-menu">
-          <div class="logo-area">
-            <img src="assets/icon/favicon.png" alt="Proggaming Logo" class="logo-img" />
-            <span class="logo-text">PROGGAMING</span>
+    <ng-container *ngIf="!esconderMenu && (usuario$ | async)">
+      <ion-menu contentId="conteudo-principal" type="overlay" side="start">
+
+        <ion-content class="ion-padding" color="light">
+          <div class="side-menu">
+            <div class="logo-area">
+              <img src="assets/icon/favicon.png" alt="Proggaming Logo" class="logo-img" />
+              <span class="logo-text">PROGGAMING</span>
+            </div>
+
+            <ion-list lines="none" class="menu-list">
+              <ion-item button routerLink="/inicial" routerDirection="root" class="menu-item">
+                <ion-icon name="home-outline" slot="start"></ion-icon>
+                <ion-label>Início</ion-label>
+              </ion-item>
+
+              <ion-item button routerLink="/aprender" class="menu-item">
+                <ion-icon name="book-outline" slot="start"></ion-icon>
+                <ion-label>Aprender</ion-label>
+                <ion-badge *ngIf="(xpTotal$ | async) as xp" slot="end" color="primary">+{{ xp }} XP</ion-badge>
+              </ion-item>
+
+              <ion-item button routerLink="/amigos" class="menu-item">
+                <ion-icon name="people-outline" slot="start"></ion-icon>
+                <ion-label>Amigos - Em breve</ion-label>
+                <ion-badge *ngIf="(novasMensagens$ | async) as mensagens; else noMsg"
+                           slot="end" color="success" >{{ mensagens }}</ion-badge>
+                <ng-template #noMsg></ng-template>
+              </ion-item>
+
+              <ion-item button routerLink="/meta" class="menu-item">
+                <ion-icon name="trophy-outline" slot="start"></ion-icon>
+                <ion-label>Metas XP</ion-label>
+                <ion-badge *ngIf="(metasCompletas$ | async) as metas"
+                           slot="end" color="warning">{{ metas }}</ion-badge>
+              </ion-item>
+
+              <ion-item button routerLink="/configuracoes" class="menu-item">
+                <ion-icon name="settings-outline" slot="start"></ion-icon>
+                <ion-label>Configurações</ion-label>
+              </ion-item>
+            </ion-list>
           </div>
+        </ion-content>
 
-          <ion-list lines="none" class="menu-list">
-          <ion-item button routerLink="/inicial" routerDirection="root" class="menu-item">
-            <ion-icon name="home-outline" slot="start"></ion-icon>
-            <ion-label>Início</ion-label>
-          </ion-item>
-
-          <ion-item button routerLink="/aprender" class="menu-item">
-            <ion-icon name="book-outline" slot="start"></ion-icon>
-            <ion-label>Aprender</ion-label>
-            @if (xpTotal$ | async; as xp) {
-              <ion-badge slot="end" color="primary">+{{ xp }} XP</ion-badge>
-            }
-          </ion-item>
-
-          <ion-item button routerLink="/amigos" class="menu-item">
-            <ion-icon name="people-outline" slot="start"></ion-icon>
-            <ion-label>Amigos - Em breve</ion-label>
-            @if (novasMensagens$ | async; as mensagens) {
-              @if (mensagens > 0) {
-                <ion-badge slot="end" color="success">{{ mensagens }}</ion-badge>
-              }
-            }
-          </ion-item>
-
-          <ion-item button routerLink="/meta" class="menu-item">
-            <ion-icon name="trophy-outline" slot="start"></ion-icon>
-            <ion-label>Metas XP</ion-label>
-            @if (metasCompletas$ | async; as metas) {
-              @if (metas > 0) {
-                <ion-badge slot="end" color="warning">{{ metas }}</ion-badge>
-              }
-            }
-          </ion-item>
-
-          <ion-item button routerLink="/configuracoes" class="menu-item">
-            <ion-icon name="settings-outline" slot="start"></ion-icon>
-            <ion-label>Configurações</ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
-      </ion-content>
-
-      <ion-footer class="ion-no-border">
-        <ion-toolbar>
-          <ion-button expand="block" fill="clear" color="medium" (click)="sair()" class="logout-button">
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
-            Sair
-          </ion-button>
-          <p class="version">Versão 1.0.0</p>
-        </ion-toolbar>
-      </ion-footer>
-    </ion-menu>
+        <ion-footer class="ion-no-border">
+          <ion-toolbar>
+            <ion-button expand="block" fill="clear" color="medium" (click)="sair()" class="logout-button">
+              <ion-icon name="log-out-outline" slot="start"></ion-icon>
+              Sair
+            </ion-button>
+            <p class="version">Versão 1.0.0</p>
+          </ion-toolbar>
+        </ion-footer>
+      </ion-menu>
+    </ng-container>
 
     <ion-router-outlet id="conteudo-principal"></ion-router-outlet>
   </ion-split-pane>

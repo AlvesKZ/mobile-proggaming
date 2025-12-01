@@ -20,7 +20,7 @@ ion-content {
   opacity: 0.9;
 }
 
-.fase-container {
+.fase1-root {
   color: white;
   font-family: 'Poppins', sans-serif;
 }
@@ -57,7 +57,7 @@ ion-content {
   text-align: left;
 }
 
-.teoria-header {
+.bloco-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,20 +92,14 @@ ion-content {
   text-align: center;
 }
 
-.xp-container span {
+.xp-info {
+  margin: 10px 0;
+}
+
+.xp-total {
   font-family: 'Press Start 2P', cursive;
   font-weight: 600;
   color: #c7860e;
-}
-
-.btn-voltar {
-  margin-top: 10px;
-  background: transparent;
-  border: 1px solid #888;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 11px;
 }
 
 .resultado {
@@ -116,6 +110,40 @@ ion-content {
   color: black;
   padding: 10px;
   overflow: auto;
+}
+
+.conclusao-fase {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: 2px solid #4caf50;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.conclusao-fase h2 {
+  margin-bottom: 8px;
+}
+
+.conclusao-fase p {
+  margin-bottom: 12px;
+}
+
+.btn-concluir {
+  background: #4caf50;
+  border: 3px solid #ffffff77;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Press Start 2P', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+}
+
+.btn-concluir:hover {
+  background: #45a049;
+  border-color: #00a30ed2;
 }
 
 .editor-container {
@@ -141,9 +169,17 @@ ion-content {
   display: inline-block;
 }
 
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #ffbd2e;
+}
+
+.green {
+  background: #27c93f;
+}
 
 .editor-title {
   color: #ccc;
@@ -165,6 +201,10 @@ ion-content {
   box-sizing: border-box;
 }
 
+.code-editor:focus {
+  outline: none;
+}
+
 button {
   padding: 10px 20px;
   background-color: #073a69;
@@ -182,36 +222,27 @@ button:hover {
   background-color: #1a3d63;
 }
 
-.conclusao-fase {
-  margin-top: 16px;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
-  border: 2px solid #4caf50;
-  text-align: center;
+.navbar {
+  display: none;
 }
-
-.btn-concluir {
-  background: #4caf50;
-  border: 3px solid #ffffff77;
-  padding: 10px 20px;
-  border-radius: 8px;
-  color: white;
-  font-family: 'Press Start 2P', sans-serif;
-  font-size: 0.6rem;
-}
-
-.navbar { display: none; }
 
 @media (max-width: 1068px) {
-  .bloco-teoria, .resultado, .editor-container {
+  .fase1-root {
+    display: flex;
+    flex-direction: column;
+    height: 120vh;
+  }
+
+  .bloco-teoria,
+  .resultado,
+  .editor-container {
     flex: 1;
     display: none;
     height: calc(100vh - 50px);
     overflow: auto;
+    padding: 10px;
+    box-sizing: border-box;
   }
-
-  .active { display: block !important; }
 
   .editor-container button {
     display: block;
@@ -231,22 +262,36 @@ button:hover {
     background: #073a69;
   }
 
+  .active {
+    display: block !important;
+  }
+
   .navbar {
     display: flex;
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 50px;
     background: #1a3d63;
     justify-content: space-around;
     align-items: center;
+    z-index: 1000;
   }
 
   .navbar button {
     flex: 1;
+    height: 100%;
+    border: none;
     background: transparent;
     color: white;
-    border: none;
     font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .navbar button:hover {
+    background: #073a69;
   }
 }
+

@@ -3,17 +3,18 @@
     <ion-title>
       <div class="shine-text">
         <span class="title-main">PROGGAMING</span>
-        <span class="title-sub">- Fase 2 HTML</span>
+        <span class="title-sub">- Fase 1 CSS</span>
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="fase1-root fase-container">
+  <div class="fase1-root">
+
     <div class="navbar">
       <button (click)="mostrarTela('bloco-teoria')">Teoria</button>
-      <button (click)="mostrarTela('resultado')">Resultado</button>
+      <button (click)="mostrarTela('resultado')" class="sumir">Resultado</button>
       <button (click)="mostrarTela('editor-container')">Editor</button>
     </div>
 
@@ -23,29 +24,23 @@
 
     <div class="container-nivel">
       <div class="bloco-teoria">
-        <div class="teoria-header">
-          <h3>Teoria - Fase 2</h3>
-          <button class="botao-som" id="botao-som" (click)="toggleSom()" aria-label="Controle de som">🔊</button>
+        <div class="bloco-header">
+          <h3>Teoria - Fase 1</h3>
+          <button class="botao-som" id="botao-som" (click)="toggleSom()">🔊</button>
         </div>
         <p id="texto-teoria"></p>
         <div id="extra-teoria" class="extra-teoria"></div>
         <button id="btn-extra-exemplo" class="btn-exemplo" style="display: none;" (click)="toggleExemplo()">
           Exibir exemplo
         </button>
-
-        <h2 id="titulo-nivel">Nível 1/6</h2>
-        <p id="descricao-nivel">
-          Nesta fase você vai praticar listas, formatação de texto e citações usando tags HTML.
-        </p>
-
+        <h2 id="titulo-nivel">Nível 1/10</h2>
+        <p id="descricao-nivel"></p>
         <hr>
-
-        <div class="xp-container">
-          <span id="xp-total">XP: 0</span>
+        <div class="xp-info">
+          <span id="xp-total" class="xp-total">XP: 0</span>
         </div>
-
-        <button class="btn-voltar" (click)="voltarParaSelecao()">
-          <span>Voltar</span>
+        <button class="voltar" (click)="voltarParaSelecao()">
+          <span>Voltar às fases</span>
         </button>
       </div>
 
@@ -56,13 +51,13 @@
           <span class="dot red"></span>
           <span class="dot yellow"></span>
           <span class="dot green"></span>
-          <span class="editor-title">index.html</span>
+          <span class="editor-title">style.css</span>
         </div>
         <textarea
           id="entrada-codigo"
           class="code-editor"
           spellcheck="false"
-          placeholder="Digite o código HTML aqui..."
+          placeholder="Digite o código CSS aqui..."
           (input)="onCodigoChange()">
         </textarea>
         <button (click)="verificarNivel()" [disabled]="botaoDesabilitado">Testar Código</button>
@@ -71,7 +66,7 @@
       <div class="conclusao-fase" *ngIf="faseConcluida">
         <h2>Parabéns!</h2>
         <p>{{ mensagemConclusao }}</p>
-        <button class="btn-concluir" (click)="concluirFase2()">Concluir a fase</button>
+        <button class="btn-concluir" (click)="concluirFase1CSS()">Concluir a fase</button>
       </div>
     </div>
 

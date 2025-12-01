@@ -42,4 +42,20 @@ export const routes: Routes = [
     path: 'fase3',
     loadComponent: () => import('./pages/aprender/game-html/fase3/fase3.page').then( m => m.Fase3Page)
   },
+  {
+    path: 'css-fase1',
+    loadComponent: () => import('./pages/aprender/game-css/fase1/fase1.page').then( m => m.Fase1CSSPage)
+  },
+  {
+    path: 'js-fase1',
+    loadComponent: () => import('./pages/aprender/game-js/fase1/fase1.page').then( m => m.Fase1Page)
+  },
+  {
+    path: 'js-fase2',
+    loadComponent: () => import('./pages/aprender/game-js/fase2/fase2.page').then( m => m.Fase2Page)
+  },
+  {
+    path: 'js-fase3',
+    loadComponent: () => import('./pages/aprender/game-js/fase3/fase3.page').then( m => m.Fase3Page)
+  },
 ];

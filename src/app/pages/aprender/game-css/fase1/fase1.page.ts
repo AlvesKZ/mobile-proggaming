@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { FirebaseService, Usuario } from '../../../../services/firebase';
 import { Firestore, doc, getDoc, runTransaction, setDoc, updateDoc, increment } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 
-interface Nivel {
+interface NivelCSS {
   titulo: string;
   descricao: string;
   teoria: string;
@@ -16,13 +16,13 @@ interface Nivel {
 }
 
 @Component({
-  selector: 'app-fase2',
-  templateUrl: './fase2.page.html',
-  styleUrls: ['./fase2.page.scss'],
+  selector: 'app-fase1-css',
+  templateUrl: './fase1.page.html',
+  styleUrls: ['./fase1.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class Fase2Page implements OnInit, OnDestroy {
+export class Fase1CSSPage implements OnInit, OnDestroy {
 
   private usuarioSub?: Subscription;
   private usuarioAtual: Usuario | null = null;
@@ -38,55 +38,96 @@ export class Fase2Page implements OnInit, OnDestroy {
   private extraVisivel = false;
   private extraHtmlAtual = '';
 
-  niveis: Nivel[] = [
+  niveisCSS: NivelCSS[] = [
     {
-      titulo: 'Nível 1/6',
-      descricao: 'Crie uma lista não ordenada de itens.',
+      titulo: 'Nível 1/10: A Cor Base',
+      descricao:
+        "Mude a cor de fundo (background-color) do bloco-teoria para 'black' (preto) para começar a 'hackear' o tema.",
       teoria:
-        'As listas não ordenadas são ótimas para agrupar itens sem uma sequência específica, como uma lista de compras ou de tarefas. Elas usam a tag-mãe <ul> (unordered list), que funciona como um "container" para os itens da lista. Cada item individualmente é inserido dentro de sua própria tag-filha <li> (list item).',
-      extra: 'Exemplo: <code>&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;</code>',
-      respostaEsperada: /<ul>.*<li>.*<\/li>.*<\/ul>/i
-    },
-    {
-      titulo: 'Nível 2/6',
-      descricao: 'Crie um link para a página "https://www.google.com".',
-      teoria:
-        'A tag <a> (anchor) é a espinha dorsal da internet, usada para conectar páginas entre si. O endereço para onde o link aponta é colocado no atributo href, que significa "Hypertext Reference". Lembre-se, o texto visível e clicável para o usuário deve ficar entre a abertura <a> e o fechamento </a> da tag.',
-      extra: 'Exemplo: <code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</code>',
-      respostaEsperada: /<a\s+href="https:\/\/www\.google\.com".*<\/a>/i
-    },
-    {
-      titulo: 'Nível 3/6',
-      descricao: 'Digite a tag HTML que sublinha um texto.',
-      teoria:
-        'A tag <u> (underline) foi historicamente usada para sublinhar textos. Embora ainda funcione, hoje em dia ela é pouco usada para esse fim, pois o sublinhado é geralmente associado a links. Em vez disso, é mais comum estilizar textos com sublinhado usando CSS. O <u> é usado semanticamente para indicar um texto que tem uma anotação não textual, como um nome próprio.',
-      extra: 'Exemplo: <code>&lt;u&gt;Texto&lt;/u&gt;</code>',
-      respostaEsperada: /<u>.*<\/u>/i
-    },
-    {
-      titulo: 'Nível 4/6',
-      descricao: 'Use a tag <strong> para enfatizar um texto.',
-      teoria:
-        'As tags <b> e <strong> podem parecer iguais visualmente, mas elas têm propósitos diferentes. A tag <b> (bold) é puramente de formatação, enquanto <strong> é uma tag semântica. Ela indica que o conteúdo é de grande importância, urgência ou relevância, e por isso é exibida em negrito pelos navegadores.',
-      extra: 'Exemplo: <code>&lt;strong&gt;Importante&lt;/strong&gt;</code>',
-      respostaEsperada: /<strong>.*<\/strong>/i
-    },
-    {
-      titulo: 'Nível 5/6',
-      descricao: 'Use a tag <em> para enfatizar um texto semanticamente.',
-      teoria:
-        'Da mesma forma que <strong> é a versão semântica de <b>, a tag <em> (emphasis) é a versão semântica de <i> (italic). Ela indica que o texto deve ser enfatizado de forma a alterar o seu significado, como em uma frase falada.',
-      extra: 'Exemplo: <code>&lt;em&gt;Ênfase&lt;/em&gt;</code>',
-      respostaEsperada: /<em>.*<\/em>/i
-    },
-    {
-      titulo: 'Nível 6/6',
-      descricao: 'Crie um bloco de citação usando <blockquote> e uma abreviação <abbr>.',
-      teoria:
-        'O <blockquote> é uma tag usada para agrupar e formatar citações longas que foram retiradas de outra fonte. Já a tag <abbr> (abbreviation) é usada para definir uma abreviação ou sigla, como "HTML" para "HyperText Markup Language".',
+        'A classe .bloco-teoria é o contêiner de tudo que é visível. Modificar seu background é a forma mais rápida de mudar o tema visual do site.',
       extra:
-        'Exemplo: <code>&lt;blockquote&gt;Citação &lt;abbr&gt;HTML&lt;/abbr&gt;&lt;/blockquote&gt;</code>',
-      respostaEsperada: /<blockquote>.*<abbr>.*<\/abbr>.*<\/blockquote>/i
+        'Use a propriedade <code>{ background-color: black; }</code> no seletor <code>.bloco-teoria</code>.',
+      respostaEsperada: /\.bloco-teoria{background-color:black;}/i
+    },
+    {
+      titulo: 'Nível 2/10: Hackeando a Classe',
+      descricao:
+        "Selecione o bloco de Teoria (classe .bloco-teoria) e defina sua largura (width) para '500px'.",
+      teoria:
+        'Classes (.nome) permitem estilizar grupos de elementos. Mudar a largura (width) é fundamental no layout, mas cuidado com a quebra da responsividade!',
+      extra: 'Ex: .bloco-teoria { width: 500px; }',
+      respostaEsperada: /\.bloco-teoria{width:500px;}/i
+    },
+    {
+      titulo: 'Nível 3/10: O Título Monstro',
+      descricao:
+        "Selecione o título do nível (ID #titulo-nivel) e aumente seu tamanho para '40px'.",
+      teoria:
+        'IDs (#nome) selecionam um elemento único. Modificar o font-size pode quebrar o layout, mas é essencial para dar destaque!',
+      extra: 'Use o seletor #titulo-nivel e font-size.',
+      respostaEsperada: /#titulo-nivel{font-size:40px;}/i
+    },
+    {
+      titulo: 'Nível 4/10: A Margem Invisível',
+      descricao: "Modifique a margem externa (margin) do BODY, definindo-a como '20'.",
+      teoria:
+        'O navegador aplica uma margem padrão ao body. Alterar isso é o primeiro passo de qualquer CSS reset para ter controle total sobre o layout.',
+      extra: 'Use margin: 20px; no seletor body.',
+      respostaEsperada: /body{margin:20px;}/i
+    },
+    {
+      titulo: 'Nível 5/10: Botão de Ação!',
+      descricao:
+        "Mude a cor de fundo dos botões (button) para o verde da barra de progresso: '#4CAF50'.",
+      teoria:
+        'Seletores de tag (button) afetam todos os botões. Cores chamativas são usadas para Ação e Sucesso na gamificação.',
+      extra: 'Use o seletor button e background-color.',
+      respostaEsperada: /button{background-color:#4CAF50;}/i
+    },
+    {
+      titulo: 'Nível 6/10: Borda de Hacker',
+      descricao:
+        "Adicione uma borda (border) de '3px solid white' ao contêiner do Editor (classe .editor-container).",
+      teoria:
+        'A propriedade border é parte do Box Model. Ajuda a destacar áreas importantes e a dar aquele visual de terminal ou hacker.',
+      extra: 'Lembre-se: { border: 3px solid white; }',
+      respostaEsperada: /\.editor-container{border:3px solid white;}/i
+    },
+    {
+      titulo: 'Nível 7/10: Sumiço da Barra',
+      descricao:
+        "Selecione a barra de progresso (classe .progresso) e defina sua altura (height) para '5px'.",
+      teoria:
+        'Mudar a height (altura) é vital para layout. Neste caso, você está disfarçando a barra para dar um toque sutil de progresso.',
+      extra: 'Use o seletor .progresso para encolher a barra.',
+      respostaEsperada: /\.progresso{height:5px;}/i
+    },
+    {
+      titulo: 'Nível 8/10: Hackeando a Fonte',
+      descricao:
+        "Mude a família da fonte (font-family) de todo o BODY para 'Roboto'.",
+      teoria:
+        'A propriedade font-family é herdada por quase todos os elementos. Mudar a fonte base afeta o visual de todo o site.',
+      extra: "A fonte 'Roboto' é mais limpa.",
+      respostaEsperada: /body{font-family:'Roboto';}/i
+    },
+    {
+      titulo: 'Nível 9/10: Centralização na Caixa',
+      descricao:
+        'Tente centralizar a caixa de Teoria (.bloco-teoria) horizontalmente. Defina a largura para 500px e use margin: 0 auto;.',
+      teoria:
+        'Para centralizar um bloco: 1. Defina largura (width); 2. Use margin: auto (ou 0 auto) para distribuir o espaço lateral.',
+      extra: 'Combine width: 500px; e margin: 0 auto; em .bloco-teoria.',
+      respostaEsperada: /\.bloco-teoria{width:500px;margin:0auto;}/i
+    },
+    {
+      titulo: 'Nível 10/10: O Container Flexível',
+      descricao:
+        'Remova o display: flex do resultado (.resultado) definindo display: none; e também esconda o botão .sumir.',
+      teoria:
+        'O display: flex é o que alinha as caixas lado a lado. Mudar para none deve desaparecer o item, deixando sem nada na tela.',
+      extra: 'Use .resultado,.sumir { display: none; }',
+      respostaEsperada: /\.resultado,.sumir{display:none;}/i
     }
   ];
 
@@ -145,7 +186,7 @@ export class Fase2Page implements OnInit, OnDestroy {
     return normalized.trim();
   }
 
-  async carregarProgresso(uid: string) {
+  private async carregarProgresso(uid: string) {
     const ref = doc(this.firestore, `usuarios/${uid}`);
     const snap = await getDoc(ref);
 
@@ -156,43 +197,43 @@ export class Fase2Page implements OnInit, OnDestroy {
       const data: any = snap.data();
       const xp = data.xp ?? 0;
 
-      const fasesHTML = data.fasesHTML || {};
-      const fase2 = fasesHTML.fase2 || {};
+      const fasesCSS = data.fasesCSS || {};
+      const fase1 = fasesCSS.fase1 || {};
 
-      this.nivelAtual = typeof fase2.nivelAtual === 'number' ? fase2.nivelAtual : 0;
-      this.faseJaConcluida = fase2.status === 'concluida';
+      this.nivelAtual = typeof fase1.nivelAtual === 'number' ? fase1.nivelAtual : 0;
+      this.faseJaConcluida = fase1.status === 'concluida';
 
       const xpTotalSpan = document.getElementById('xp-total');
       if (xpTotalSpan) {
         xpTotalSpan.textContent = `XP: ${xp}`;
       }
 
-      this.atualizarNivel();
+      this.atualizarNivelCSS();
 
-      if (fase2.codigoAtual && entradaCodigo && preview) {
-        entradaCodigo.value = fase2.codigoAtual;
-        preview.innerHTML = fase2.codigoAtual;
+      if (data.codigoCSSAtual && entradaCodigo && preview) {
+        entradaCodigo.value = data.codigoCSSAtual;
+        preview.innerHTML = `<style>${data.codigoCSSAtual}</style>A visualização aparecerá aqui.`;
       }
 
       if (this.faseJaConcluida) {
         alert('⚠️ Você já concluiu esta fase.');
-        this.router.navigate(['/game-html']);
+        this.router.navigate(['/game-css']);
       }
     } else {
       await setDoc(
         ref,
         {
-          fasesHTML: {
-            fase1: { status: 'concluida', nivelAtual: 6 },
-            fase2: { status: 'disponivel', nivelAtual: 0 },
-            fase3: { status: 'bloqueada', nivelAtual: 0 }
-          }
+          fasesCSS: {
+            fase1: { status: 'disponivel', nivelAtual: 0 },
+            fase2: { status: 'bloqueada', nivelAtual: 0 }
+          },
+          fase1CSSConcluida: false
         },
         { merge: true }
       );
       this.nivelAtual = 0;
       this.faseJaConcluida = false;
-      this.atualizarNivel();
+      this.atualizarNivelCSS();
     }
   }
 
@@ -204,11 +245,9 @@ export class Fase2Page implements OnInit, OnDestroy {
     this.precisaAlterarCodigo = false;
     this.botaoDesabilitado = false;
 
-    const input = entradaCodigo.value
-      .replace(/<script.*?>.*?<\/script>/gi, '')
-      .replace(/on\w+=".*?"/gi, '');
-    preview.innerHTML = input || 'A visualização aparecerá aqui.';
-    this.salvarCodigo(entradaCodigo.value);
+    const input = entradaCodigo.value;
+    preview.innerHTML = `<style>${input}</style>A visualização aparecerá aqui.`;
+    this.salvarCodigoCSS(entradaCodigo.value);
   }
 
   async verificarNivel() {
@@ -224,7 +263,7 @@ export class Fase2Page implements OnInit, OnDestroy {
     }
 
     const audio = document.getElementById('audio-sucesso') as HTMLAudioElement | null;
-    const nivel = this.niveis[this.nivelAtual];
+    const nivel = this.niveisCSS[this.nivelAtual];
     if (!nivel) return;
 
     const regex = nivel.respostaEsperada;
@@ -243,24 +282,24 @@ export class Fase2Page implements OnInit, OnDestroy {
       this.precisaAlterarCodigo = true;
 
       this.nivelAtual++;
-      await this.salvarProgresso(this.nivelAtual);
+      await this.salvarProgressoCSS(this.nivelAtual);
 
-      if (this.nivelAtual < this.niveis.length) {
-        this.atualizarNivel();
+      if (this.nivelAtual < this.niveisCSS.length) {
+        this.atualizarNivelCSS();
       } else {
         this.faseConcluida = true;
-        this.mensagemConclusao = `Você concluiu a Fase 2 de HTML! ${
-          this.faseJaConcluida ? 'Pode refazer, mas não ganhará XP extra.' : '+50XP'
+        this.mensagemConclusao = `Você concluiu a Fase 1 de CSS! ${
+          this.faseJaConcluida ? 'Pode refazer, mas não ganhará XP extra.' : '+100XP'
         }`;
       }
     } else {
-      alert('Resposta incorreta! Tente novamente.');
+      alert('Resposta incorreta! Tente novamente. Lembre-se de fechar as chaves e usar ponto e vírgula.');
     }
   }
 
-  private atualizarNivel() {
-    if (this.nivelAtual >= this.niveis.length) return;
-    const nivel = this.niveis[this.nivelAtual];
+  private atualizarNivelCSS() {
+    if (this.nivelAtual >= this.niveisCSS.length) return;
+    const nivel = this.niveisCSS[this.nivelAtual];
 
     const tituloNivel = document.getElementById('titulo-nivel');
     const descricaoNivel = document.getElementById('descricao-nivel');
@@ -274,13 +313,14 @@ export class Fase2Page implements OnInit, OnDestroy {
     if (tituloNivel) tituloNivel.textContent = nivel.titulo;
     if (descricaoNivel) descricaoNivel.textContent = nivel.descricao;
     if (textoTeoria) textoTeoria.textContent = nivel.teoria;
-    // prepara HTML de exemplo com quebra de linha após o rótulo "Exemplo" / "Ex."
+
     let extra = nivel.extra || '';
     extra = extra.replace('Exemplo: ', 'Exemplo:<br>');
     extra = extra.replace('Ex.: ', 'Ex.:<br>');
     this.extraHtmlAtual = extra;
     this.extraVisivel = false;
-    if (extraTeoria) extraTeoria.innerHTML = '';
+    const extraEl = extraTeoria as HTMLElement | null;
+    if (extraEl) extraEl.innerHTML = '';
     if (botaoExemplo) {
       if (this.extraHtmlAtual) {
         botaoExemplo.style.display = 'inline-flex';
@@ -289,9 +329,10 @@ export class Fase2Page implements OnInit, OnDestroy {
         botaoExemplo.style.display = 'none';
       }
     }
+
     if (entradaCodigo) entradaCodigo.value = '';
     if (preview) preview.innerHTML = 'A visualização aparecerá aqui.';
-    if (barra) barra.style.width = `${(this.nivelAtual / this.niveis.length) * 100}%`;
+    if (barra) barra.style.width = `${(this.nivelAtual / this.niveisCSS.length) * 100}%`;
   }
 
   toggleExemplo() {
@@ -321,23 +362,23 @@ export class Fase2Page implements OnInit, OnDestroy {
     });
   }
 
-  private async salvarProgresso(nivel: number) {
+  private async salvarProgressoCSS(nivel: number) {
     if (!this.usuarioAtual) return;
     const ref = doc(this.firestore, `usuarios/${this.usuarioAtual.uid}`);
     await updateDoc(ref, {
-      'fasesHTML.fase2.nivelAtual': nivel
+      'fasesCSS.fase1.nivelAtual': nivel
     });
   }
 
-  private async salvarCodigo(codigo: string) {
+  private async salvarCodigoCSS(codigo: string) {
     if (!this.usuarioAtual) return;
     const ref = doc(this.firestore, `usuarios/${this.usuarioAtual.uid}`);
     await updateDoc(ref, {
-      'fasesHTML.fase2.codigoAtual': codigo
+      codigoCSSAtual: codigo
     });
   }
 
-  async concluirFase2() {
+  async concluirFase1CSS() {
     if (!this.usuarioAtual) return;
     const ref = doc(this.firestore, `usuarios/${this.usuarioAtual.uid}`);
 
@@ -345,35 +386,36 @@ export class Fase2Page implements OnInit, OnDestroy {
       const snap = await getDoc(ref);
       if (snap.exists()) {
         const data: any = snap.data();
-        const fases = data.fasesHTML || {};
+        const fases = data.fasesCSS || {};
 
-        fases.fase2 = {
-          ...(fases.fase2 || {}),
+        fases.fase1 = {
+          ...(fases.fase1 || {}),
           status: 'concluida',
           nivelAtual: this.nivelAtual
         };
-        fases.fase3 = {
-          ...(fases.fase3 || {}),
+        fases.fase2 = {
+          ...(fases.fase2 || {}),
           status: 'disponivel',
           nivelAtual: 0
         };
 
         await updateDoc(ref, {
-          fasesHTML: fases,
-          xp: increment(50)
+          fasesCSS: fases,
+          xp: increment(100),
+          fase1CSSConcluida: true
         });
 
         this.faseJaConcluida = true;
-        alert('✅ Fase 2 concluída! Fase 3 desbloqueada.');
-        this.router.navigate(['/game-html']);
+        alert('✅ Fase 1 CSS concluída! Fase 2 CSS desbloqueada.');
+        this.router.navigate(['/game-css']);
       }
     } else {
       alert('⚠️ Você já concluiu esta fase. Pode revisar, mas não ganha XP.');
-      this.router.navigate(['/game-html']);
+      this.router.navigate(['/game-css']);
     }
   }
 
   voltarParaSelecao() {
-    this.router.navigate(['/game-html']);
+    this.router.navigate(['/game-css']);
   }
 }

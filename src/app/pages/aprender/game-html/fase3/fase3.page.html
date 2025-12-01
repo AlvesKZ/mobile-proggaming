@@ -1,11 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Fase 3 - Operadores e Expressões</ion-title>
+    <ion-title>
+      <div class="shine-text">
+        <span class="title-main">PROGGAMING</span>
+        <span class="title-sub">- Fase 3 HTML</span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="fase-container">
+  <div class="fase1-root fase-container">
     <div class="navbar">
       <button (click)="mostrarTela('bloco-teoria')">Teoria</button>
       <button (click)="mostrarTela('resultado')">Resultado</button>
@@ -28,10 +33,9 @@
           Exibir exemplo
         </button>
 
-        <h2 id="titulo-nivel">Nível 1/6</h2>
+        <h2 id="titulo-nivel">Nível 1/7</h2>
         <p id="descricao-nivel">
-          JavaScript é uma linguagem de programação essencial e a mais popular para o desenvolvimento web, responsável
-          por adicionar interatividade e dinamismo a páginas web.
+          Nesta fase você vai praticar links, navegação interna e menus usando HTML.
         </p>
 
         <hr>
@@ -45,20 +49,20 @@
         </button>
       </div>
 
-      <div class="resultado active" id="preview">A visualização aparecerá aqui.</div>
+      <div class="resultado" id="preview">A visualização aparecerá aqui.</div>
 
       <div class="editor-container">
         <div class="editor-header">
           <span class="dot red"></span>
           <span class="dot yellow"></span>
           <span class="dot green"></span>
-          <span class="editor-title">index.js</span>
+          <span class="editor-title">index.html</span>
         </div>
         <textarea
           id="entrada-codigo"
           class="code-editor"
           spellcheck="false"
-          placeholder="Digite o código JavaScript aqui..."
+          placeholder="Digite o código HTML aqui..."
           (input)="onCodigoChange()">
         </textarea>
         <button (click)="verificarNivel()" [disabled]="botaoDesabilitado">Testar Código</button>

@@ -1,76 +1,63 @@
+ion-content {
+  --background: linear-gradient(120deg, #092b61, #09437a, #112a53);
+}
+
 .fase-container {
-  padding: 16px;
-  color: #fff;
-  background: radial-gradient(circle at top, #1f2933 0, #000 55%);
-  min-height: 100%;
-}
-
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.navbar button {
-  background: #222;
-  border: 2px solid #555;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-family: 'Press Start 2P', system-ui;
-  font-size: 9px;
-  cursor: pointer;
+  color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 .progresso {
   width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-bottom: 16px;
+  background-color: #1a3d63;
+  height: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .barra {
+  background: linear-gradient(140deg, #4caf50, #077010, #03522e);
   height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #00ff99, #00bcd4);
-  transition: width 0.25s ease-out;
+  width: 0%;
+  transition: width 0.3s;
 }
 
 .container-nivel {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 16px;
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
 }
 
-.bloco-teoria,
-.resultado,
-.editor-container {
-  background: rgba(0, 0, 0, 0.45);
-  border-radius: 12px;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.bloco-teoria {
+  background: #073a69;
+  border: 1px solid #fffff072;
+  width: 100%;
+  padding: 15px;
+  text-align: left;
 }
 
 .teoria-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+}
+
+.bloco-teoria h3 {
+  margin: 0;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .botao-som {
-  background: #222;
-  border: 2px solid #555;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  padding: 0;
+  position: relative;
+  top: -4px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
 }
 
 .extra-teoria {
@@ -80,103 +67,98 @@
   color: #ddd;
 }
 
-.btn-exemplo {
-  margin-top: 8px;
-  background: transparent;
-  border: 1px solid #c7860e;
-  color: #c7860e;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 11px;
+#titulo-nivel {
+  font-size: 18px;
+  font-family: 'Press Start 2P';
+  margin-top: 30px;
+  text-align: center;
 }
 
-.xp-container {
-  margin: 10px 0;
+.xp-container span {
+  font-family: 'Press Start 2P';
+  color: #c7860e;
 }
 
 .btn-voltar {
   margin-top: 10px;
   background: transparent;
   border: 1px solid #888;
-  color: #fff;
+  color: white;
   padding: 6px 12px;
   border-radius: 8px;
   font-size: 11px;
 }
 
 .resultado {
-  min-height: 120px;
-  font-size: 13px;
+  font-family: 'Roboto';
+  min-height: 500px;
+  width: 100%;
+  background: white;
+  color: black;
+  padding: 10px;
   overflow: auto;
 }
 
 .editor-container {
+  height: 90vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  background: #1e1e1e;
 }
 
 .editor-header {
+  background: #2d2d2d;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 4px;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-}
-
-.dot.red {
-  background: #ff5f56;
-}
-
-.dot.yellow {
-  background: #ffbd2e;
-}
-
-.dot.green {
-  background: #27c93f;
-}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
 
 .editor-title {
-  font-size: 11px;
-  opacity: 0.75;
+  color: #ccc;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: monospace;
 }
 
 .code-editor {
   width: 100%;
-  min-height: 160px;
-  background: #111;
-  color: #0f0;
-  border-radius: 8px;
-  border: 1px solid #333;
-  padding: 8px;
-  font-family: 'Fira Code', monospace;
-  font-size: 13px;
+  height: 150px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  font-family: 'Fira Code';
+  padding: 12px;
 }
 
-.editor-container button {
-  align-self: flex-end;
-  background: #1e90ff;
-  border: none;
-  padding: 8px 14px;
+button {
+  padding: 10px 20px;
+  background-color: #073a69;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  border: 2px solid #fffff03a;
   border-radius: 8px;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #1a3d63;
 }
 
 .conclusao-fase {
   margin-top: 16px;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0,0,0,0.25);
   border-radius: 12px;
   border: 2px solid #4caf50;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .btn-concluir {
@@ -186,32 +168,58 @@
   padding: 10px 20px;
   border-radius: 8px;
   color: white;
-  font-family: 'Press Start 2P', sans-serif;
-  text-transform: uppercase;
   font-size: 0.6rem;
 }
 
-.btn-concluir:hover {
-  background: #45a049;
-  border-color: #00a30ed2;
-}
+.navbar { display: none; }
 
-@media (max-width: 768px) {
-  .container-nivel {
-    display: flex;
-    flex-direction: column;
-  }
-
+@media (max-width: 1068px) {
   .bloco-teoria,
   .resultado,
   .editor-container {
+    flex: 1;
     display: none;
+    height: calc(100vh - 50px);
+    overflow: auto;
   }
 
-  .bloco-teoria.active,
-  .resultado.active,
-  .editor-container.active {
+  .active { display: block !important; }
+
+  .editor-container button {
     display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: #1a3d63;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .editor-container button:hover {
+    background: #073a69;
+  }
+
+  .navbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background: #1a3d63;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .navbar button {
+    flex: 1;
+    background: transparent;
+    color: white;
+    border: none;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
   }
 }
-

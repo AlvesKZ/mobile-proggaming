@@ -1,13 +1,65 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>gameJS</ion-title>
+    <ion-title>
+      <div class="shine-text">
+        <span class="title-main">PROGGAMING</span>
+        <span class="title-sub">- JS games</span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">gameJS</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="game-js-container ion-padding">
+
+    <div class="game-header">
+      <ion-button fill="clear" color="light" routerLink="/aprender" class="back-button">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        <span>Voltar</span>
+      </ion-button>
+
+      <div class="game-title">
+        <h1>Fases de JavaScript</h1>
+        <p class="game-subtitle">Complete as fases para ganhar XP em JavaScript!</p>
+      </div>
+
+      <ion-button
+        id="restart-button"
+        color="danger"
+        fill="outline"
+        class="restart-button"
+        (click)="confirmarReinicio()">
+        Reiniciar Progresso
+      </ion-button>
+    </div>
+
+    <div class="games-grid">
+      <div
+        class="game-card"
+        *ngFor="let fase of fases"
+        [ngClass]="{ 'blocked': fase.status === 'bloqueada', 'completed': fase.status === 'concluida' }">
+
+        <span class="game-title-text">JS - Fase {{ fase.numero }}</span>
+        <span class="game-desc">{{ fase.descricao }}</span>
+
+        <div class="progress">
+          <div class="progress-bar" [ngStyle]="{ width: fase.progresso + '%' }"></div>
+        </div>
+
+        <ion-button
+          class="game-btn"
+          expand="block"
+          [color]="fase.status === 'bloqueada' ? 'medium' : 'success'"
+          [disabled]="fase.status === 'bloqueada'"
+          [routerLink]="getLinkFase(fase.numero)">
+          {{ fase.status === 'bloqueada' ? 'Bloqueada' : 'Acessar lições' }}
+        </ion-button>
+
+      </div>
+    </div>
+
+    <div class="footer-text">
+      <span>&copy; 2025 Proggaming. All rights reserved.</span>
+    </div>
+  </div>
 </ion-content>

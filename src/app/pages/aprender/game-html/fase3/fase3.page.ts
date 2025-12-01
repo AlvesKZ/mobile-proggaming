@@ -40,51 +40,62 @@ export class Fase3Page implements OnInit, OnDestroy {
 
   niveis: Nivel[] = [
     {
-      titulo: 'Nível 1/6',
-      descricao: 'Utilize operadores aritméticos (+, -, *, /, %) para realizar cálculos.',
-      teoria:
-        'Operadores aritméticos permitem realizar operações matemáticas básicas. Exemplo: + soma, - subtrai, * multiplica, / divide, % retorna o resto da divisão.',
-      extra: 'Exemplo:<br>let soma = 2 + 3;<br>let resto = 10 % 3;',
-      respostaEsperada: /(\d+\s*[+\-*\/%]\s*\d+)/i
+      titulo: 'Nível 1/7',
+      descricao: "Crie um link simples usando <a href='...'>.",
+      teoria: 'A tag <a> (âncora) é usada para criar links. O atributo href define o destino do link. O texto entre <a> e </a> é o que será exibido para o usuário.',
+      extra: "Exemplo: <code>&lt;a href='https://www.exemplo.com'&gt;Clique aqui&lt;/a&gt;</code>",
+      respostaEsperada: /<a\b[^>]*\bhref\s*=\s*(['"])?[\s\S]*?\1[^>]*>[\s\S]*?<\/a>/i
     },
     {
-      titulo: 'Nível 2/6',
-      descricao: 'Utilize operadores relacionais (==, ===, !=, <, >) para comparar valores.',
+      titulo: 'Nível 2/7',
+      descricao: 'Use os atributos target, title e download no link.',
       teoria:
-        'Operadores relacionais comparam valores e retornam verdadeiro ou falso. == compara valor, === compara valor e tipo, != diferente, < menor, > maior.',
-      extra: 'Exemplo:<br>let igual = 5 == "5";<br>let estrito = 5 === "5";<br>let menor = 3 < 5;',
-      respostaEsperada: /(==|===|!=|<|>)/i
+        "O atributo target='_blank' abre o link em uma nova aba. O title mostra uma dica quando o usuário passa o mouse. O download força baixar o arquivo.",
+      extra:
+        "Exemplo: <code>&lt;a href='arquivo.pdf' target='_blank' title='Baixar PDF' download&gt;Baixar&lt;/a&gt;</code>",
+      respostaEsperada:
+        /<a\b(?=[\s\S]*\bhref\s*=\s*(['"])[\s\S]*?\1)(?=[\s\S]*\btarget\s*=\s*(['"])_blank\2)(?=[\s\S]*\btitle\s*=\s*(['"])[\s\S]*?\3)(?=[\s\S]*\bdownload(?:\s*=\s*(['"])[\s\S]*?\4)?)[^>]*>[\s\S]*?<\/a>/i
     },
     {
-      titulo: 'Nível 3/6',
-      descricao: 'Utilize operadores lógicos (&&, ||, !) para combinar expressões.',
-      teoria: 'Operadores lógicos permitem combinar condições. && (E), || (OU), ! (NÃO).',
-      extra: 'Exemplo:<br>let cond = true && false;<br>let ou = true || false;<br>let nao = !true;',
-      respostaEsperada: /(&&|\|\||!)/i
+      titulo: 'Nível 3/7',
+      descricao: 'Crie um link interno (âncora) que leve até uma seção com id.',
+      teoria: 'Para navegar na mesma página: href="#id" e no destino id="id".',
+      extra:
+        "Exemplo: <code>&lt;a href='#secao'&gt;Ir&lt;/a&gt;  &lt;div id='secao'&gt;Conteúdo&lt;/div&gt;</code>",
+      respostaEsperada:
+        /(<a\b[^>]*\bhref\s*=\s*(['"])#[^'\"]+\2[^>]*>[\s\S]*?<\/a>)|(\bid\s*=\s*(['"])[^'\"]+\4)/i
     },
     {
-      titulo: 'Nível 4/6',
-      descricao: 'Observe a precedência dos operadores em uma expressão.',
-      teoria:
-        'A precedência define a ordem de execução dos operadores. Parênteses alteram a ordem. Exemplo: 2 + 3 * 4 resulta em 14, pois a multiplicação ocorre antes da soma.',
-      extra: 'Exemplo:<br>let resultado = 2 + 3 * 4;<br>let resultado2 = (2 + 3) * 4;',
-      respostaEsperada: /(\([\s\S]*\)|\d+\s*[+\-*\/]\s*\d+\s*[+\-*\/]\s*\d+)/i
+      titulo: 'Nível 4/7',
+      descricao: 'Crie um menu de navegação simples com 3 links.',
+      teoria: 'Use <nav> com múltiplos <a>. Normalmente organizados em listas.',
+      extra:
+        'Ex.: <code>&lt;nav&gt;<br>  &lt;a href="#"&gt;1&lt;/a&gt;<br>&lt;/nav&gt;</code>',
+      respostaEsperada: /<nav\b[^>]*>[\s\S]*?(?:<a\b[^>]*>[\s\S]*?<\/a>){3,}[\s\S]*?<\/nav>/i
     },
     {
-      titulo: 'Nível 5/6',
-      descricao: 'Realize operações entre strings e números.',
-      teoria:
-        'Ao somar uma string com um número, ocorre concatenação. Para somar valores numéricos, converta ambos para número.',
-      extra: 'Exemplo:<br>let texto = "Idade: " + 20;<br>let soma = Number("10") + 5;',
-      respostaEsperada: /(['"].*['"]\s*\+\s*\d+|Number\s*\([\s\S]*\)\s*\+\s*\d+)/i
+      titulo: 'Nível 5/7',
+      descricao: 'Quiz: Qual atributo usamos para abrir um link em nova aba?',
+      teoria: "O atributo correto é target='_blank'.",
+      extra: 'Digite exatamente: <code>target="_blank"</code>',
+      respostaEsperada: /\btarget\s*=\s*(['"])_blank\1/i
     },
     {
-      titulo: 'Nível 6/6',
-      descricao: 'Monte uma expressão lógica que envolva operadores aritméticos, relacionais e lógicos.',
+      titulo: 'Nível 6/7',
+      descricao: 'Desafio: Crie um menu com 3 links funcionando.',
+      teoria: 'Combine tudo: <nav> + pelo menos 3 <a>.',
+      extra:
+        "Ex.: <code>&lt;nav&gt;&lt;a href='https://google.com'&gt;Google&lt;/a&gt;...&lt;/nav&gt;</code>",
+      respostaEsperada: /<nav\b[^>]*>[\s\S]*?(?:<a\b[^>]*>[\s\S]*?<\/a>){3,}[\s\S]*?<\/nav>/i
+    },
+    {
+      titulo: 'Nível 7/7 (Extra)',
+      descricao: 'Desafio: Adicione uma imagem com um link de sua escolha.',
       teoria:
-        'Você pode combinar operadores para criar expressões complexas. Exemplo: (2 + 3) > 4 && true.',
-      extra: 'Exemplo:<br>let exp = (2 + 3) > 4 && true;',
-      respostaEsperada: /(\([\s\S]*\)\s*[<>!=]=?\s*\d+\s*(&&|\|\|)\s*(true|false))/i
+        'A tag <img> é usada para inserir imagens. O atributo src aponta para o caminho da imagem. Pode ser um link ou um caminho relativo.',
+      extra:
+        "Exemplo: <code>&lt;img src='https://via.placeholder.com/150' alt='Uma imagem de exemplo'&gt;</code>",
+      respostaEsperada: /<img\b[^>]*\bsrc\s*=\s*(['"])[^'\"]+\1[^>]*>/i
     }
   ];
 
@@ -273,11 +284,10 @@ export class Fase3Page implements OnInit, OnDestroy {
     if (descricaoNivel) descricaoNivel.textContent = nivel.descricao;
     if (textoTeoria) textoTeoria.textContent = nivel.teoria;
 
+    // prepara HTML de exemplo com quebra de linha após o rótulo "Exemplo" / "Ex."
     let extra = nivel.extra || '';
-    if (extra) {
-      extra = extra.replace(/;\s*/g, ';<br>');
-      extra = extra.replace(/(<br>\s*)+/g, '<br>');
-    }
+    extra = extra.replace('Exemplo: ', 'Exemplo:<br>');
+    extra = extra.replace('Ex.: ', 'Ex.:<br>');
     this.extraHtmlAtual = extra;
     this.extraVisivel = false;
     if (extraTeoria) extraTeoria.innerHTML = '';

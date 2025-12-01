@@ -15,9 +15,10 @@ import {
   IonSplitPane
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { FirebaseService } from './services/firebase';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +49,17 @@ export class AppComponent {
   novasMensagens$: Observable<number> = new Observable<number>();
   metasCompletas$: Observable<number> = new Observable<number>();
 
-  constructor(private firebase: FirebaseService) {}
+  esconderMenu = false;
+
+  constructor(private firebase: FirebaseService, private router: Router) {
+    this.router.events
+      .pipe(filter((ev) => ev instanceof NavigationEnd))
+      .subscribe((ev) => {
+        const url = (ev as NavigationEnd).urlAfterRedirects || (ev as NavigationEnd).url;
+        const authRoutes = ['/login', '/registrar'];
+        this.esconderMenu = authRoutes.some((r) => url.startsWith(r));
+      });
+  }
 
   async sair() {
     try {

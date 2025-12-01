@@ -10,7 +10,7 @@ import {
   user
 } from '@angular/fire/auth';
 
-import { Firestore, doc, setDoc, docData } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, docData, getDoc } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 
 export interface Usuario {
@@ -103,6 +103,12 @@ export class FirebaseService {
 
   async criarDocumentoSeNaoExistir(uid: string, email: string) {
     const ref = doc(this.firestore, `usuarios/${uid}`);
+    const snap = await getDoc(ref);
+
+    // Se o documento já existe, não resetar os campos (xp, fasesHTML, etc.)
+    if (snap.exists()) {
+      return;
+    }
 
     await setDoc(
       ref,
