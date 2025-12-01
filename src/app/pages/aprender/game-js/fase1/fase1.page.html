@@ -1,13 +1,97 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>fase1</ion-title>
+    <ion-title>
+      <div class="shine-text">
+        <span class="title-main">PROGGAMING</span>
+        <span class="title-sub">- Fase 1 JavaScript</span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">fase1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="fase1-root">
+
+    <div class="navbar">
+      <button (click)="mostrarTela('bloco-teoria')" class="nav-btn" aria-label="Ver teoria">
+        <span>Teoria</span>
+      </button>
+      <button (click)="mostrarTela('resultado')" class="nav-btn" aria-label="Ver resultado">
+        <span>Resultado</span>
+      </button>
+      <button (click)="mostrarTela('editor-container')" class="nav-btn" aria-label="Ver editor">
+        <span>Editor</span>
+      </button>
+    </div>
+
+    <div class="progresso">
+      <div class="barra" id="barra-progresso"></div>
+    </div>
+
+    <div class="container-nivel">
+      <div class="bloco-teoria">
+        <div class="teoria-header">
+          <h3>Teoria - Fase 1</h3>
+          <button class="botao-som" id="botao-som" (click)="toggleSom()" aria-label="Controle de som">🔊</button>
+        </div>
+
+        <p id="texto-teoria"></p>
+        <div id="extra-teoria" class="extra-teoria"></div>
+        <button
+          id="btn-extra-exemplo"
+          class="btn-exemplo"
+          style="display: none;"
+          (click)="toggleExemplo()">
+          Exibir exemplo
+        </button>
+
+        <h2 id="titulo-nivel">Nível 1/5</h2>
+        <p id="descricao-nivel">
+          JavaScript é uma linguagem de programação essencial e a mais popular para o
+          desenvolvimento web, responsável por adicionar interatividade e dinamismo a páginas web, como mapas interativos,
+          animações e atualizações de conteúdo em tempo real. Ele é uma das três tecnologias fundamentais da web,
+          juntamente com HTML (estrutura) e CSS (estilo)
+        </p>
+
+        <hr>
+
+        <div class="xp-container">
+          <span id="xp-total">XP: 0</span>
+        </div>
+
+        <button class="btn-voltar" (click)="voltarParaSelecao()">
+          <span>Voltar às fases</span>
+        </button>
+      </div>
+
+      <div class="resultado" id="preview">A visualização aparecerá aqui.</div>
+
+      <div class="editor-container">
+        <div class="editor-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="editor-title">index.js</span>
+        </div>
+        <textarea
+          id="entrada-codigo"
+          class="code-editor"
+          spellcheck="false"
+          placeholder="Digite o código JavaScript aqui..."
+          (input)="onCodigoChange()">
+        </textarea>
+        <button class="btn-testar" (click)="verificarNivel()" [disabled]="botaoDesabilitado">
+          Testar Código
+        </button>
+      </div>
+
+      <div class="conclusao-fase" *ngIf="faseConcluida">
+        <h2>Parabéns!</h2>
+        <p>{{ mensagemConclusao }}</p>
+        <button class="btn-concluir" (click)="concluirFase1JS()">Concluir a fase</button>
+      </div>
+    </div>
+
+    <audio id="audio-sucesso" src="/assets/audio/acerto.mp3"></audio>
+  </div>
 </ion-content>

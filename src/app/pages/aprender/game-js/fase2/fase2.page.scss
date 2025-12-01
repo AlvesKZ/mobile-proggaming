@@ -1,0 +1,617 @@
+ion-content {
+ion-content {
+  --background: linear-gradient(120deg, #092b61, #09437a, #112a53);
+}
+
+.shine-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+}
+
+.title-main {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.title-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.fase2-root {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.progresso {
+  width: 100%;
+  background-color: #1a3d63;
+  height: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.barra {
+  background: linear-gradient(140deg, #4caf50, #077010, #03522e);
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.container-nivel {
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.bloco-teoria {
+  background: #073a69;
+  border: 1px solid #fffff072;
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+}
+
+.teoria-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bloco-teoria h3 {
+  margin: 0;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.botao-som {
+  padding: 0;
+  position: relative;
+  top: -4px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+}
+
+.extra-teoria {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ddd;
+}
+
+#titulo-nivel {
+  font-size: 18px;
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.xp-container {
+  margin: 10px 0;
+}
+
+.xp-total {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 600;
+  color: #c7860e;
+}
+
+.resultado {
+  font-family: 'Roboto', sans-serif;
+  min-height: 500px;
+  width: 100%;
+  background: white;
+  color: black;
+  padding: 10px;
+  overflow: auto;
+}
+
+.conclusao-fase {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: 2px solid #4caf50;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.conclusao-fase h2 {
+  margin-bottom: 8px;
+}
+
+.conclusao-fase p {
+  margin-bottom: 12px;
+}
+
+.btn-concluir {
+  background: #4caf50;
+  border: 3px solid #ffffff77;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Press Start 2P', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+}
+
+.btn-concluir:hover {
+  background: #45a049;
+  border-color: #00a30ed2;
+}
+
+.editor-container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+}
+
+.editor-header {
+  background: #2d2d2d;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #ffbd2e;
+}
+
+.green {
+  background: #27c93f;
+}
+
+.editor-title {
+  color: #ccc;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: monospace;
+}
+
+.code-editor {
+  width: 100%;
+  height: 150px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  resize: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.code-editor:focus {
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #073a69;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  border: 2px solid #fffff03a;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a3d63;
+}
+
+.navbar {
+  display: none;
+}
+
+/* Preview escuro e saídas do sandbox, igual à base estática */
+#preview {
+  background: #000000;
+  color: #00ff00;
+  padding: 12px;
+  min-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.output-log {
+  color: #9ad1ff;
+}
+
+.output-result {
+  color: #b2f59b;
+}
+
+.output-error {
+  color: #ff9b9b;
+}
+
+@media (max-width: 1068px) {
+  .fase2-root {
+    display: flex;
+    flex-direction: column;
+    height: 120vh;
+  }
+
+  .bloco-teoria,
+  .resultado,
+  .editor-container {
+    flex: 1;
+    display: none;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .editor-container button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: #1a3d63;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .editor-container button:hover {
+    background: #073a69;
+  }
+
+  .active {
+    display: block !important;
+  }
+
+  .navbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #1a3d63;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .navbar button {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .navbar button:hover {
+    background: #073a69;
+  }
+}
+  --background: linear-gradient(120deg, #092b61, #09437a, #112a53);
+}
+
+.shine-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+}
+
+.title-main {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.title-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.fase1-root {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+.progresso {
+  width: 100%;
+  background-color: #1a3d63;
+  height: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.barra {
+  background: linear-gradient(140deg, #4caf50, #077010, #03522e);
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.container-nivel {
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.bloco-teoria {
+  background: #073a69;
+  border: 1px solid #fffff072;
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+}
+
+.bloco-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bloco-teoria h3 {
+  margin: 0;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.botao-som {
+  padding: 0;
+  position: relative;
+  top: -4px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+}
+
+.extra-teoria {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ddd;
+}
+
+#titulo-nivel {
+  font-size: 18px;
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.xp-info {
+  margin: 10px 0;
+}
+
+.xp-total {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 600;
+  color: #c7860e;
+}
+
+.resultado {
+  font-family: 'Roboto', sans-serif;
+  min-height: 500px;
+  width: 100%;
+  background: white;
+  color: black;
+  padding: 10px;
+  overflow: auto;
+}
+
+.conclusao-fase {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: 2px solid #4caf50;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.conclusao-fase h2 {
+  margin-bottom: 8px;
+}
+
+.conclusao-fase p {
+  margin-bottom: 12px;
+}
+
+.btn-concluir {
+  background: #4caf50;
+  border: 3px solid #ffffff77;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Press Start 2P', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+}
+
+.btn-concluir:hover {
+  background: #45a049;
+  border-color: #00a30ed2;
+}
+
+.editor-container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+}
+
+.editor-header {
+  background: #2d2d2d;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #ffbd2e;
+}
+
+.green {
+  background: #27c93f;
+}
+
+.editor-title {
+  color: #ccc;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: monospace;
+}
+
+.code-editor {
+  width: 100%;
+  height: 150px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  resize: none;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.code-editor:focus {
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #073a69;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  border: 2px solid #fffff03a;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #1a3d63;
+}
+
+.navbar {
+  display: none;
+}
+
+@media (max-width: 1068px) {
+  .fase1-root {
+    display: flex;
+    flex-direction: column;
+    height: 120vh;
+  }
+
+  .bloco-teoria,
+  .resultado,
+  .editor-container {
+    flex: 1;
+    display: none;
+    height: calc(100vh - 50px);
+    overflow: auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .editor-container button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    background: #1a3d63;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .editor-container button:hover {
+    background: #073a69;
+  }
+
+  .active {
+    display: block !important;
+  }
+
+  .navbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #1a3d63;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .navbar button {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .navbar button:hover {
+    background: #073a69;
+  }
+}
+
