@@ -1,0 +1,112 @@
+ion-split-pane {
+  --side-width: 280px;
+  --side-max-width: 85%;
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #050816;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.logo-text {
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #ffffff !important;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: var(--ion-color-primary);
+  color: white;
+  margin: -16px -16px 16px -16px;
+  
+  ion-avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .user-details {
+    h3 {
+      margin: 0 0 4px 0;
+      font-weight: 500;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+  }
+}
+
+.menu-list {
+  background: transparent;
+  padding: 8px 0;
+
+  .menu-item {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --min-height: 56px;
+    --background-hover: rgba(var(--ion-color-primary-rgb), 0.1);
+    --border-radius: 8px;
+    margin: 4px 8px;
+    --background: transparent;
+    color: #ffffff;
+
+    ion-icon {
+      color: #ffffff;
+    }
+    
+    ion-label {
+      font-weight: 500;
+      color: #ffffff;
+    }
+  }
+}
+
+.logout-button {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin: 0;
+}
+
+.version {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--ion-color-medium);
+  margin: 8px 0 0;
+}
+
+// Ajustes para o tema escuro
+@media (prefers-color-scheme: dark) {
+  ion-menu {
+    --background: var(--ion-color-dark);
+    --ion-text-color: var(--ion-color-light);
+    
+    .menu-list {
+      --background: transparent;
+    }
+  }
+}

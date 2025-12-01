@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="shine-text">
+        <span class="title-main">PROGGAMING</span>
+        <span class="title-sub">- HTML games</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="game-html-container ion-padding">
+
+    <div class="game-header">
+      <ion-button fill="clear" color="light" routerLink="/aprender" class="back-button">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        <span>Voltar</span>
+      </ion-button>
+
+      <div class="game-title">
+        <h1>Fases de HTML</h1>
+        <p class="game-subtitle">Complete as fases para ganhar XP em HTML!</p>
+      </div>
+
+      <ion-button
+        id="restart-button"
+        color="danger"
+        fill="outline"
+        class="restart-button"
+        (click)="abrirReinicio()">
+        Reiniciar Progresso
+      </ion-button>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card" [ngClass]="{'blocked': fase1.status === 'bloqueada', 'completed': fase1.status === 'concluida'}">
+        <span class="game-title-text">HTML - Fase 1</span>
+        <span class="game-desc">Introdução à linguagem</span>
+        <div class="progress">
+          <div class="progress-bar progress-available" [ngStyle]="{ 'width.%': fase1.progresso }"></div>
+        </div>
+        <ion-button
+          class="game-btn"
+          [color]="fase1.status === 'bloqueada' ? 'medium' : 'success'"
+          expand="block"
+          [disabled]="fase1.status === 'bloqueada'"
+          routerLink="/fase1">
+          {{ fase1.status === 'concluida' ? 'Revisar fase' : 'Acessar lições' }}
+        </ion-button>
+      </div>
+
+      <div class="game-card" [ngClass]="{'blocked': fase2.status === 'bloqueada', 'completed': fase2.status === 'concluida'}">
+        <span class="game-title-text">HTML - Fase 2</span>
+        <span class="game-desc">Estrutura básica</span>
+        <div class="progress">
+          <div class="progress-bar" [ngStyle]="{ 'width.%': fase2.progresso }"></div>
+        </div>
+        <ion-button
+          class="game-btn"
+          [color]="fase2.status === 'bloqueada' ? 'medium' : 'success'"
+          expand="block"
+          [disabled]="fase2.status === 'bloqueada'"
+          routerLink="/fase2">
+          {{ fase2.status === 'bloqueada' ? 'Bloqueada' : (fase2.status === 'concluida' ? 'Revisar fase' : 'Acessar lições') }}
+        </ion-button>
+      </div>
+
+      <div class="game-card" [ngClass]="{'blocked': fase3.status === 'bloqueada', 'completed': fase3.status === 'concluida'}">
+        <span class="game-title-text">HTML - Fase 3</span>
+        <span class="game-desc">Tags comuns</span>
+        <div class="progress">
+          <div class="progress-bar" [ngStyle]="{ 'width.%': fase3.progresso }"></div>
+        </div>
+        <ion-button
+          class="game-btn"
+          [color]="fase3.status === 'bloqueada' ? 'medium' : 'success'"
+          expand="block"
+          [disabled]="fase3.status === 'bloqueada'"
+          routerLink="/fase3">
+          {{ fase3.status === 'bloqueada' ? 'Bloqueada' : (fase3.status === 'concluida' ? 'Revisar fase' : 'Acessar lições') }}
+        </ion-button>
+      </div>
+
+      <!-- Futuras fases podem ser adicionadas dinamicamente -->
+    </div>
+
+    <div class="footer-text">
+      <span>&copy; 2025 Proggaming. All rights reserved.</span>
+    </div>
+  </div>
+
+  <div class="reboot-overlay" *ngIf="mostrarReinicio">
+    <div class="reboot-content">
+      <h2>Reiniciar Progresso</h2>
+      <p>
+        Tem certeza que deseja apagar todo o seu progresso em HTML? Esta ação não pode ser desfeita.
+        Seu XP será mantido para você poder refazer as fases.
+      </p>
+      <div class="reboot-buttons">
+        <button class="reboot-confirm" (click)="confirmarReinicio()" [disabled]="carregandoReinicio">
+          Sim
+        </button>
+        <button class="reboot-cancel" (click)="cancelarReinicio()" [disabled]="carregandoReinicio">
+          Não
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

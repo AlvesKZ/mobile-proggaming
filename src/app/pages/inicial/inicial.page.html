@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="shine-text">
+        <span class="title-main">PROGGAMING</span>
+        <span class="title-sub">- Home</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button href="https://www.youtube.com/@ProggamingPage" target="_blank" fill="clear">
+        <ion-icon slot="icon-only" name="logo-youtube"></ion-icon>
+      </ion-button>
+      <ion-button href="https://www.instagram.com/proggaming_" target="_blank" fill="clear">
+        <ion-icon slot="icon-only" name="logo-instagram"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container ion-padding">
+    <ion-card *ngIf="usuario" class="profile-card">
+      <ion-card-content class="profile-content">
+
+        <div class="account-row">
+          <div class="account-main">
+            <ion-avatar class="account-avatar">
+              <img [src]="usuario.avatarUrl || usuario.fotoUrl || 'assets/icon/favicon.png'" />
+            </ion-avatar>
+            <div class="account-info">
+              <span class="account-name">{{ usuario.apelido || usuario.nomeExibicao || usuario.email }}</span>
+              <span class="account-email">{{ usuario.email }}</span>
+            </div>
+          </div>
+
+          <div class="account-xp">
+            <span class="xp-label">XP</span>
+            <span class="xp-value">{{ usuario.xp ?? 0 }}</span>
+          </div>
+        </div>
+
+        <ion-button expand="block" color="secondary" (click)="editarPerfil()" class="edit-profile-btn">
+          Editar Perfil
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ranking-card">
+      <ion-card-header>
+        <ion-card-title>🏆 Top 10 Proggamers</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="ranking-placeholder">Ranking em breve nesta versão mobile.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="academy-card">
+      <ion-card-content class="academy-content">
+        <img src="assets/icon/favicon.png" alt="Proggaming" class="academy-logo" />
+        <div class="academy-text">
+          <h2>Acesse o Academy do Proggaming</h2>
+          <p>
+            Lá você encontra arquivos, tutoriais, repositórios e muito mais sobre programação básica.
+          </p>
+          <p>
+            Em breve: acesso ao nosso ChatBot direto pelo app!
+          </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="support-card">
+      <ion-card-content class="support-content">
+        <p>
+          Problemas, bugs ou dúvidas? Contate:
+        </p>
+        <p class="support-email">proggamingcontato@gmail.com</p>
+        <p>
+          Ou entre no nosso <a href="https://discord.gg/eNJhxNDB" target="_blank">Discord</a> para suporte e avisos ;)
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="footer-text">
+      <span>&copy; 2025 Proggaming. All rights reserved.</span>
+    </div>
+  </div>
+</ion-content>

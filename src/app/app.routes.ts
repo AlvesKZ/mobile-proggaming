@@ -2,12 +2,44 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: '',
+    redirectTo: 'registrar',
+    pathMatch: 'full',
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    path: 'registrar',
+    loadComponent: () => import('./pages/registrar/registrar.page').then( m => m.RegistrarPage)
+  },
+  {
+    path: 'inicial',
+    loadComponent: () => import('./pages/inicial/inicial.page').then( m => m.InicialPage)
+  },
+  {
+    path: 'aprender',
+    loadComponent: () => import('./pages/aprender/aprender.page').then( m => m.AprenderPage)
+  },
+  {
+    path: 'game-js',
+    loadComponent: () => import('./pages/aprender/game-js/game-js.page').then( m => m.GameJSPage)
+  },
+  {
+    path: 'game-html',
+    loadComponent: () => import('./pages/aprender/game-html/game-html.page').then( m => m.GameHTMLPage)
+  },
+  {
+    path: 'game-css',
+    loadComponent: () => import('./pages/aprender/game-css/game-css.page').then( m => m.GameCSSPage)
+  },
+  {
+    path: 'fase1',
+    loadComponent: () => import('./pages/aprender/game-html/fase1/fase1.page').then( m => m.Fase1Page)
+  },
+  {
+    path: 'fase2',
+    loadComponent: () => import('./pages/aprender/game-html/fase2/fase2.page').then( m => m.Fase2Page)
+  },
+  {
+    path: 'fase3',
+    loadComponent: () => import('./pages/aprender/game-html/fase3/fase3.page').then( m => m.Fase3Page)
   },
 ];

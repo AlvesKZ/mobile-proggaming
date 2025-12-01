@@ -1,0 +1,253 @@
+ion-content {
+  --background: linear-gradient(90deg, #1a3d63, #073a69, #092b61);
+}
+
+ion-card {
+  background: rgba(10, 25, 49, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  color: #fff;
+  margin: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+ion-card-header {
+  padding-bottom: 0;
+}
+
+ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+ion-card-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.shine-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+}
+
+.title-main {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.title-sub {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+ion-avatar {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+ion-avatar img {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+ion-button {
+  margin-top: 12px;
+  --border-radius: 8px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mascot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.welcome-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-name {
+  font-weight: 600;
+}
+
+.account-email {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.account-xp {
+  text-align: center;
+}
+
+.xp-label {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.xp-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: orange;
+}
+
+ion-footer {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 16px;
+  font-size: 0.8rem;
+}
+
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+ion-buttons {
+  ion-button {
+    --color: white;
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+.user-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+  
+  .stat-item {
+    text-align: center;
+    
+    .stat-value {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--ion-color-primary);
+    }
+    
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  }
+}
+
+.ranking-card,
+.academy-card,
+.install-card,
+.support-card {
+  font-size: 14px;
+}
+
+.academy-content {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.academy-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.academy-text h2 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+}
+
+.academy-text p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.install-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.install-mascot {
+  width: 70px;
+  border-radius: 50%;
+  border: 2px solid #fffff034;
+}
+
+.install-text {
+  font-size: 13px;
+}
+
+.support-content {
+  text-align: center;
+  font-size: 13px;
+}
+
+.support-email {
+  color: #18a5f7;
+  font-weight: 700;
+}
+
+.support-content a {
+  color: #18a5f7;
+  font-weight: 600;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+}

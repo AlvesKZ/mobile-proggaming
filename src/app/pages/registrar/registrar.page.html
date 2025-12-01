@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>{{ ehLogin ? 'Login' : 'Cadastro' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="auth-content">
+
+  <!-- Overlay de carregamento -->
+  <div class="loading-overlay" *ngIf="mostrarOverlayCarregamento">
+    <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
+  </div>
+
+  <!-- Modal de bem-vindo -->
+  <ion-modal [isOpen]="mostrarModalBemVindo" (didDismiss)="fecharModalBemVindo()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Bem-vindo ao Proggaming!</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="fecharModalBemVindo()">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="welcome-modal-content">
+        <div class="welcome-container">
+          <div class="welcome-image">
+            <ion-icon name="game-controller-outline"></ion-icon>
+          </div>
+          <div class="welcome-text">
+            <h2>Bem-Vindo(a) ao Proggaming!</h2>
+            <p class="welcome-description">
+              Aqui você poderá aprender o básico de HTML, CSS e JavaScript usando minigames e lições interativas!
+            </p>
+          </div>
+        </div>
+        <ion-button expand="full" color="danger" class="close-welcome-btn" (click)="fecharModalBemVindo()">
+          Fechar
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Conteúdo principal -->
+  <div class="main-container">
+    <div class="logo-section">
+      <div class="logo-container">
+        <img src="assets/icon/favicon.png" alt="Proggaming Logo" class="logo-image">
+        <span class="logo-text">Proggaming</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="auth-form">
+      <h2 class="form-title">{{ ehLogin ? 'Login' : 'Cadastro' }}</h2>
+
+      <ion-text color="danger" class="error-message" *ngIf="mensagemErro">
+        <p>{{ mensagemErro }}</p>
+      </ion-text>
+
+      <form (ngSubmit)="processarAuth()" #formAuth="ngForm">
+
+        <ion-item class="auth-item" lines="none">
+          <ion-label position="floating" for="campo-email">E-mail</ion-label>
+          <ion-input id="campo-email" type="email" [(ngModel)]="email" name="email" required autocomplete="email"
+            autocapitalize="off" autocorrect="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="auth-item" lines="none">
+          <ion-label position="floating" for="campo-senha">Senha</ion-label>
+          <ion-input id="campo-senha" type="password" [(ngModel)]="senha" name="senha" required minlength="6"
+            autocapitalize="off" autocorrect="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-button *ngIf="ehLogin" fill="clear" class="reset-password-btn" (click)="redefinirSenha()">
+          Esqueci minha senha
+        </ion-button>
+
+        <ion-button expand="full" type="submit" class="auth-button" [disabled]="carregando">
+          <ion-spinner *ngIf="carregando" name="crescent"></ion-spinner>
+          <span *ngIf="!carregando">{{ ehLogin ? 'Entrar' : 'Cadastrar' }}</span>
+        </ion-button>
+
+        <ion-button expand="full" class="btn-google" (click)="loginComGoogle()" [disabled]="carregando">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          {{ ehLogin ? 'Entrar com Google' : 'Cadastrar com Google' }}
+        </ion-button>
+
+      </form>
+
+      <div class="toggle-container">
+        <ion-text class="toggle-text" (click)="alternarModoAuth()">
+          {{ ehLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Entrar' }}
+        </ion-text>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
