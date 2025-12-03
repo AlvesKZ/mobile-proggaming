@@ -6,12 +6,10 @@
 
 <ion-content [fullscreen]="true" class="auth-content">
 
-  <!-- Overlay de carregamento -->
   <div class="loading-overlay" *ngIf="mostrarOverlayCarregamento">
     <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
   </div>
 
-  <!-- Modal de bem-vindo -->
   <ion-modal [isOpen]="mostrarModalBemVindo" (didDismiss)="fecharModalBemVindo()">
     <ng-template>
       <ion-header>
@@ -43,7 +41,6 @@
     </ng-template>
   </ion-modal>
 
-  <!-- Conteúdo principal -->
   <div class="main-container">
     <div class="logo-section">
       <div class="logo-container">
@@ -83,11 +80,6 @@
         <ion-button expand="full" type="submit" class="auth-button" [disabled]="carregando">
           <ion-spinner *ngIf="carregando" name="crescent"></ion-spinner>
           <span *ngIf="!carregando">{{ ehLogin ? 'Entrar' : 'Cadastrar' }}</span>
-        </ion-button>
-
-        <ion-button expand="full" class="btn-google" (click)="loginComGoogle()" [disabled]="carregando">
-          <ion-icon name="logo-google" slot="start"></ion-icon>
-          {{ ehLogin ? 'Entrar com Google' : 'Cadastrar com Google' }}
         </ion-button>
 
       </form>

@@ -29,10 +29,6 @@ export class RegistrarPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    const usuario = await this.firebase.verificarRetornoGoogle();
-    if (usuario) {
-      this.router.navigateByUrl('/inicial', { replaceUrl: true });
-    }
   }
 
   alternarModoAuth() {
@@ -60,13 +56,6 @@ export class RegistrarPage implements OnInit {
 
     this.carregando = false;
     this.mostrarOverlayCarregamento = false;
-  }
-
-  async loginComGoogle() {
-    this.carregando = true;
-    this.mostrarOverlayCarregamento = true;
-    this.mensagemErro = '';
-    await this.firebase.loginGoogleRedirect();
   }
 
   redefinirSenha() {

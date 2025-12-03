@@ -47,7 +47,6 @@ export class AppComponent {
   usuario$ = this.firebase.usuario$;
   xpTotal$: Observable<number> = new Observable<number>();
   novasMensagens$: Observable<number> = new Observable<number>();
-  metasCompletas$: Observable<number> = new Observable<number>();
 
   esconderMenu = false;
 

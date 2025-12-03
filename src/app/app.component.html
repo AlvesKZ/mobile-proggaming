@@ -36,13 +36,6 @@
                 <ng-template #noMsg></ng-template>
               </ion-item>
 
-              <ion-item button routerLink="/meta" class="menu-item">
-                <ion-icon name="trophy-outline" slot="start"></ion-icon>
-                <ion-label>Metas XP</ion-label>
-                <ion-badge *ngIf="(metasCompletas$ | async) as metas"
-                           slot="end" color="warning">{{ metas }}</ion-badge>
-              </ion-item>
-
               <ion-item button routerLink="/configuracoes" class="menu-item">
                 <ion-icon name="settings-outline" slot="start"></ion-icon>
                 <ion-label>Configurações</ion-label>

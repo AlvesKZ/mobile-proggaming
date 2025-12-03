@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltar()" fill="clear">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Editar Perfil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="editar-perfil-container ion-padding" *ngIf="usuarioDados as user">
+    <section class="perfil-resumo">
+      <ion-avatar class="perfil-avatar">
+        <img [src]="selectedAvatarPath || user.avatarUrl || user.fotoUrl || 'assets/icon/favicon.png'" />
+      </ion-avatar>
+      <div class="perfil-info">
+        <span class="perfil-nome">{{ user.apelido || user.nomeExibicao || user.email }}</span>
+        <span class="perfil-email">{{ user.email }}</span>
+        <span class="perfil-xp">XP: {{ currentUserXP }}</span>
+      </div>
+    </section>
+
+    <section class="avatar-section">
+      <h2>Escolha seu Avatar</h2>
+      <p class="avatar-status" *ngIf="statusAvatar">{{ statusAvatar }}</p>
+      <div class="avatar-list">
+        <button
+          type="button"
+          class="avatar-option"
+          *ngFor="let avatar of availableAvatars"
+          [class.selected]="avatar.path === selectedAvatarPath"
+          [class.locked]="currentUserXP < avatar.requiredXp"
+          (click)="selecionarAvatar(avatar)">
+          <img [src]="avatar.path" alt="Avatar" />
+          <span class="avatar-xp" *ngIf="avatar.requiredXp > 0">{{ avatar.requiredXp }} XP</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="apelido-section">
+      <h2>Alterar Apelido</h2>
+      <ion-item lines="none" class="apelido-item">
+        <ion-input
+          type="text"
+          maxlength="25"
+          placeholder="Digite o novo apelido"
+          [(ngModel)]="novoApelido">
+        </ion-input>
+      </ion-item>
+      <ion-button expand="block" color="secondary" (click)="salvarAlteracoes()" [disabled]="salvando">
+        {{ salvando ? 'Salvando...' : 'Salvar Alterações' }}
+      </ion-button>
+      <p class="mensagem" *ngIf="mensagemUsername" [class.sucesso]="mensagemCor === 'success'" [class.erro]="mensagemCor === 'danger'">
+        {{ mensagemUsername }}
+      </p>
+    </section>
+  </div>
+</ion-content>

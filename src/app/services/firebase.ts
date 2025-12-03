@@ -3,14 +3,11 @@ import {
   Auth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
   signOut,
   user
 } from '@angular/fire/auth';
 
-import { Firestore, doc, setDoc, docData, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, docData, getDoc, collection, query, orderBy, limit, collectionData } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 
 export interface Usuario {
@@ -76,27 +73,6 @@ export class FirebaseService {
     };
   }
 
-  async loginGoogleRedirect() {
-    const provedor = new GoogleAuthProvider();
-    await signInWithRedirect(this.auth, provedor);
-  }
-
-  async verificarRetornoGoogle(): Promise<Usuario | null> {
-    const result = await getRedirectResult(this.auth);
-    if (!result) return null;
-
-    const usuario = result.user;
-
-    await this.criarDocumentoSeNaoExistir(usuario.uid, usuario.email ?? '');
-
-    return {
-      uid: usuario.uid,
-      email: usuario.email ?? '',
-      nomeExibicao: usuario.displayName ?? '',
-      fotoUrl: usuario.photoURL ?? ''
-    };
-  }
-
   async logout(): Promise<void> {
     await signOut(this.auth);
   }
@@ -104,8 +80,6 @@ export class FirebaseService {
   async criarDocumentoSeNaoExistir(uid: string, email: string) {
     const ref = doc(this.firestore, `usuarios/${uid}`);
     const snap = await getDoc(ref);
-
-    // Se o documento já existe, não resetar os campos (xp, fasesHTML, etc.)
     if (snap.exists()) {
       return;
     }
@@ -128,5 +102,11 @@ export class FirebaseService {
   getDadosUsuario(uid: string): Observable<any> {
     const ref = doc(this.firestore, `usuarios/${uid}`);
     return docData(ref);
+  }
+
+  getRankingTop10(): Observable<Usuario[]> {
+    const colRef = collection(this.firestore, 'usuarios');
+    const q = query(colRef, orderBy('xp', 'desc'), limit(10));
+    return collectionData(q, { idField: 'uid' }) as Observable<Usuario[]>;
   }
 }

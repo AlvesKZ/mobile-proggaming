@@ -53,7 +53,20 @@
         <ion-card-title>🏆 Top 10 Proggamers</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p class="ranking-placeholder">Ranking em breve nesta versão mobile.</p>
+        <ion-list *ngIf="ranking && ranking.length; else rankingVazio">
+          <ion-item *ngFor="let user of ranking; index as i">
+            <ion-avatar slot="start">
+              <img [src]="user.avatarUrl || 'assets/avatars/avatar.jpg'" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ i + 1 }}º - {{ user.apelido || user.nomeExibicao || user.email }}</h2>
+              <p>{{ user.xp || 0 }} XP</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ng-template #rankingVazio>
+          <p class="ranking-placeholder">Nenhum dado de ranking disponível.</p>
+        </ng-template>
       </ion-card-content>
     </ion-card>
 

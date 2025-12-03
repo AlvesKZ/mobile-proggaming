@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Metas de XP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="metas-content">
+  <div class="metas-container ion-padding">
+    <div class="nova-meta-card">
+      <h2>Criar nova meta</h2>
+      <ion-item lines="none">
+        <ion-label position="floating">Título da meta</ion-label>
+        <ion-input [(ngModel)]="novaMeta.titulo"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">XP alvo</ion-label>
+        <ion-input type="number" [(ngModel)]="novaMeta.xpAlvo"></ion-input>
+      </ion-item>
+      <div class="datas-row">
+        <ion-item lines="none">
+          <ion-label position="stacked">Início</ion-label>
+          <ion-input type="date" [(ngModel)]="novaMeta.dataInicio" [min]="hoje"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="stacked">Fim</ion-label>
+          <ion-input type="date" [(ngModel)]="novaMeta.dataFim" [min]="hoje"></ion-input>
+        </ion-item>
+      </div>
+      <ion-button expand="block" color="primary" (click)="salvarMeta()" [disabled]="carregando">
+        Salvar meta
+      </ion-button>
+    </div>
+
+    <div class="lista-metas-card">
+      <h2>Minhas metas</h2>
+      <ion-list *ngIf="metas && metas.length; else semMetas">
+        <ion-item *ngFor="let meta of metas" [class.concluida]="meta.concluida">
+          <ion-label>
+            <h3>{{ meta.titulo }}</h3>
+            <p>XP alvo: {{ meta.xpAlvo }}</p>
+            <p *ngIf="meta.dataInicio || meta.dataFim">
+              {{ meta.dataInicio || '?' }} até {{ meta.dataFim || '?' }}
+            </p>
+          </ion-label>
+          <ion-button *ngIf="meta.podeDarXp && xpAtual >= meta.xpAlvo" fill="solid" color="success" size="small" (click)="concluirMeta(meta)">
+            Concluir (+100 XP)
+          </ion-button>
+          <ion-button fill="clear" color="medium" size="small" (click)="alternarConcluida(meta)">
+            <ion-icon [name]="meta.concluida ? 'checkmark-done-outline' : 'checkmark-outline'"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="excluirMeta(meta)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+      <ng-template #semMetas>
+        <p class="sem-metas-text">Nenhuma meta cadastrada ainda.</p>
+      </ng-template>
+    </div>
+  </div>
+</ion-content>
